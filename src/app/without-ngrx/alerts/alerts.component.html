@@ -1,0 +1,8 @@
+<h1>Alerts</h1>
+
+<div *ngFor="let alert of alerts" class="card">
+  <div class="card-body">
+    <p class="card-text" [ngClass]="!alert.IsRead ? 'fw-bold' : ''">{{alert.Message}}</p>
+    <button *ngIf="!alert.IsRead" class="btn btn-primary" (click)="markRead(alert)">Mark Read</button>
+  </div>
+</div>
