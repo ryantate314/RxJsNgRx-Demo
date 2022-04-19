@@ -1,0 +1,23 @@
+<svg *ngIf="nodeSet" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .node-text {
+            font-size: 3px;
+        }
+    </style>
+    <!-- Inputs -->
+    <g *ngFor="let row of nodeSet.inputs; let rowIndex = index">
+        <g *ngFor="let node of row;">
+            <circle [attr.cx]="10 + node.timeStep * (circleRadius * 2 + 3)"
+                [attr.cy]="10 + rowIndex * (circleRadius * 2 + 3)" [attr.r]="circleRadius" [attr.fill]="colors[rowIndex]" />
+            <text [attr.x]="10 + node.timeStep * (circleRadius * 2 + 3)" [attr.y]="10 + rowIndex * (circleRadius * 2 + 3)" text-anchor="middle" dy=".3em"
+                class="node-text">{{node.value}}</text>
+        </g>
+    </g>
+    <!-- Outputs -->
+    <g *ngFor="let node of nodeSet.output;">
+        <circle [attr.cx]="10 + node.timeStep * (circleRadius * 2 + 3)" [attr.cy]="10 + (nodeSet.numInputs) * (circleRadius * 2 + 3)" [attr.r]="circleRadius"
+            [attr.fill]="colors[nodeSet.numInputs]" />
+        <text [attr.x]="10 + node.timeStep * (circleRadius * 2 + 3)" [attr.y]="10 + (nodeSet.numInputs) * (circleRadius * 2 + 3)" text-anchor="middle"
+            dy=".3em" class="node-text">{{node.value}}</text>
+    </g>
+</svg>
