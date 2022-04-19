@@ -3,18 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TwoInputsComponent } from './two-inputs/two-inputs.component';
-import { NodeDiagramComponent } from './shared/node-diagram/node-diagram.component';
+import { MyCommonModule } from './common/common.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TwoInputsComponent,
-    NodeDiagramComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MyCommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

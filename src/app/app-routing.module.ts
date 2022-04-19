@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TwoInputsComponent } from './two-inputs/two-inputs.component';
 
 const routes: Routes = [
-  { path: "two-inputs", component: TwoInputsComponent }
+  
+  { path: 'rxjs', loadChildren: () => import('./rxjs/rxjs.module').then(m => m.RxjsModule) },
+  { path: 'withoutNgrx', loadChildren: () => import('./without-ngrx/without-ngrx.module').then(m => m.WithoutNgrxModule) },
+  { path: 'withNgrx', loadChildren: () => import('./with-ngrx/with-ngrx.module').then(m => m.WithNgrxModule) }
 ];
 
 @NgModule({

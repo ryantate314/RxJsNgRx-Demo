@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { NodeSet } from 'src/app/models/nodeset.model';
+import { NodeSet } from '../../models/nodeset.model';
 
 @Component({
   selector: 'app-node-diagram',

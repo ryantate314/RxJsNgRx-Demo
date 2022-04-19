@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, takeUntil, withLatestFrom } from 'rxjs';
+import { Observable, Subject, takeUntil, withLatestFrom } from 'rxjs';
 import { NodeSet } from '../models/nodeset.model';
 
 @Component({
@@ -26,6 +26,27 @@ export class TwoInputsComponent implements OnInit, OnDestroy {
       this.nodeSet = this.nodeSet.addOutput(value, this.timeStep);
       this.timeStep++;
     });
+
+
+function doWork(): Observable<string> {
+  const obs$ = new Subject<string>();
+
+  window.setTimeout(function() {
+    // Long running process
+    // ...
+
+    obs$.next("Done!");
+  });
+
+  return obs$;
+}
+
+doWork()
+  .subscribe(function(value) {
+    alert("Received value: " + value);
+  });
+
+    
 
   }
 
