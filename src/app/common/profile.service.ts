@@ -24,6 +24,7 @@ export class ProfileService {
   }
 
   public markAlertRead(id: number): Observable<void> {
+    debugger; //TODO remove
     return this.http.post<void>(`/alerts/${id}/read`, null);
   }
 }

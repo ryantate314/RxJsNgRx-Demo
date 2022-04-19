@@ -22,7 +22,8 @@ export class AlertsComponent implements OnInit {
 
   public markRead(alert: Alert) {
     alert.IsRead = true;
-    this.profileService.markAlertRead(alert.Id);
+    this.profileService.markAlertRead(alert.Id)
+      .subscribe();
   }
 
 }

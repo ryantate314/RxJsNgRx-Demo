@@ -9,12 +9,14 @@ import { ProfileComponent } from './profile/profile.component';
 import { mockBackendProvider } from '../common/mock-backend.interceptor';
 import { ProfileService } from '../common/profile.service';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     WithoutNgrxComponent,
     AlertsComponent,
-    ProfileComponent
+    ProfileComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

@@ -39,6 +39,8 @@ export class MockBackendInterceptor implements HttpInterceptor {
 
         const { url, method, headers, body, params } = request;
 
+        console.log("Intercepting request to " + url);
+
         // wrap in delayed observable to simulate server api call
         return of(null)
             .pipe(mergeMap(handleRoute))
