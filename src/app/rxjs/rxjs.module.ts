@@ -7,6 +7,7 @@ import { RxjsComponent } from './rxjs.component'
 import { TwoInputsComponent } from './two-inputs/two-inputs.component';
 import { NodeDiagramComponent } from './shared/node-diagram/node-diagram.component';
 import { SandboxComponent } from './sandbox/sandbox.component';
+import { TwoInputDemoComponent } from './shared/two-input-demo/two-input-demo.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SandboxComponent } from './sandbox/sandbox.component';
     RxjsComponent,
     TwoInputsComponent,
     NodeDiagramComponent,
-    SandboxComponent
+    SandboxComponent,
+    TwoInputDemoComponent
   ],
   imports: [
     CommonModule,

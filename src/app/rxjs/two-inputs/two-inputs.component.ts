@@ -1,76 +1,56 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subject, takeUntil, withLatestFrom } from 'rxjs';
+import { AfterViewInit, Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { combineLatest, merge, mergeWith, Observable, Subject, takeUntil, withLatestFrom } from 'rxjs';
 import { NodeSet } from '../models/nodeset.model';
+import { TwoInputDemoComponent } from '../shared/two-input-demo/two-input-demo.component';
 
 @Component({
   selector: 'app-two-inputs',
   templateUrl: './two-inputs.component.html',
   styleUrls: ['./two-inputs.component.scss']
 })
-export class TwoInputsComponent implements OnInit, OnDestroy {
+export class TwoInputsComponent implements OnInit, AfterViewInit {
 
-  nodeSet = new NodeSet(2);
-  timeStep: number = 0;
-
-  aClick$ = new Subject<string>();
-  bClick$ = new Subject<string>();
-
-  destroyed$ = new Subject<void>();
-
-  constructor() {
-
-    this.aClick$.pipe(
-      withLatestFrom(this.bClick$),
-      takeUntil(this.destroyed$)
-    ).subscribe((value) => {
-      this.nodeSet = this.nodeSet.addOutput(value, this.timeStep);
-      this.timeStep++;
-    });
-
-
-function doWork(): Observable<string> {
-  const obs$ = new Subject<string>();
-
-  window.setTimeout(function() {
-    // Long running process
-    // ...
-
-    obs$.next("Done!");
-  });
-
-  return obs$;
-}
-
-doWork()
-  .subscribe(function(value) {
-    alert("Received value: " + value);
-  });
-
-    
-
-  }
-
-  ngOnDestroy(): void {
-    this.destroyed$.next();
-  }
+  @ViewChildren(TwoInputDemoComponent) demos!: QueryList<TwoInputDemoComponent>;
 
   ngOnInit(): void {
   }
 
-  aClick() {
-    this.nodeSet = this.nodeSet.addNode(0, "A", this.timeStep);
-    this.timeStep++;
-    this.aClick$.next("A");
-  }
+  ngAfterViewInit(): void {
+    const demos = this.demos.toArray();
 
-  bClick() {
-    this.nodeSet = this.nodeSet.addNode(1, "B", this.timeStep);
-    this.timeStep++;
-    this.bClick$.next("B");
-  }
+    const withLatestPipeDemo = demos[0];
 
-  reset() {
-    this.nodeSet = new NodeSet(2);
-    this.timeStep = 0;
+    withLatestPipeDemo.aClick$.pipe(
+        withLatestFrom(withLatestPipeDemo.bClick$)
+      )
+      .subscribe((value) => {
+        withLatestPipeDemo.addResult(value);
+      });
+
+    const combineLatestDemo = demos[1];
+
+    combineLatest([
+      combineLatestDemo.aClick$,
+      combineLatestDemo.bClick$
+    ]).subscribe((value) => {
+      combineLatestDemo.addResult(value);
+    });
+
+    const mergePipeDemo = demos[2];
+
+    mergePipeDemo.aClick$.pipe(
+      mergeWith(mergePipeDemo.bClick$)
+    )
+    .subscribe((value) => {
+      mergePipeDemo.addResult(value);
+    });
+
+    const mergeDemo = demos[3];
+
+    merge(mergeDemo.aClick$, mergeDemo.bClick$)
+      .subscribe((value) => {
+        mergeDemo.addResult(value);
+      });
   }
+  
 }

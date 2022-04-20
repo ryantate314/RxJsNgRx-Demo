@@ -1,13 +1,38 @@
 
-<div>
-    <h4>WithLatest</h4>
+<div class="container-fluid">
+  <div>
+      <h4>WithLatest Pipe</h4>
+      <pre>
+          A -> withLatest(B)
+      </pre>
+      
+    <app-two-input-demo #pipeWithLatest></app-two-input-demo>
+  </div>
+
+  <div>
+    <h4>CombineLatest</h4>
     <pre>
-        A -> withLatest(B)
+        combineLatest([A, B])
     </pre>
     
-    <button (click)="aClick()">A</button>
-    <button (click)="bClick()">B</button>
-    <button (click)="reset()">Reset</button>
+    <app-two-input-demo #combineLatest></app-two-input-demo>
+  </div>
 
-    <app-node-diagram [nodeSet]="nodeSet"></app-node-diagram>
+  <div>
+    <h4>Merge Pipe</h4>
+    <pre>
+        A -> merge(B)
+    </pre>
+    
+    <app-two-input-demo #pipeMerge></app-two-input-demo>
+  </div>
+
+  <div>
+    <h4>Merge</h4>
+    <pre>
+        merge(A, B)
+    </pre>
+    
+    <app-two-input-demo #merge></app-two-input-demo>
+  </div>
 </div>
