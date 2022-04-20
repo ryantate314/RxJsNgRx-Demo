@@ -1,8 +1,8 @@
 <div class="container">
   <h1>RxJs Sandbox</h1>
 
-  <button class="btn btn-primary" (click)="a$.next('A')">A</button>
-  <button class="btn btn-secondary" (click)="b$.next('B')">B</button>
+  <button class="btn btn-primary" (click)="a$.next('A' + timeStep)">A</button>
+  <button class="btn btn-secondary" (click)="b$.next('B' + timeStep)">B</button>
 
   <app-node-diagram [nodeSet]="nodeSet"></app-node-diagram>
 </div>

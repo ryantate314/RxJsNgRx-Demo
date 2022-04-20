@@ -25,7 +25,7 @@ export class WithNgrxComponent implements OnInit {
     this.numUnreadAlerts$ = this.store.select(selectAlerts).pipe(
       filter((alerts) => alerts !== null),
       map((alerts) => alerts!.filter(alert => !alert.IsRead).length)
-    )
+    );
   }
 
   ngOnInit(): void {
