@@ -1,5 +1,14 @@
-<a [routerLink]="['rxjs', 'two-inputs']">Two Inputs</a>
-<a [routerLink]="['withoutNgrx']">Without NgRx</a>
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="['rxjs', 'two-inputs']">Two Inputs</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="['withoutNgrx']">Without NgRx</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="['withNgrx']">With NgRx</a>
+  </li>
+</ul>
 
 <router-outlet>
 </router-outlet>

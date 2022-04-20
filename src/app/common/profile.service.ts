@@ -15,8 +15,8 @@ export class ProfileService {
     return this.http.get<Profile>("/profile");
   }
 
-  public updateProfile(profile: Profile): Observable<void> {
-    return this.http.put<void>("/profile", profile);
+  public updateProfile(profile: Profile): Observable<Profile> {
+    return this.http.put<Profile>("/profile", profile);
   }
 
   public getAlerts(): Observable<Alert[]> {
@@ -24,7 +24,6 @@ export class ProfileService {
   }
 
   public markAlertRead(id: number): Observable<void> {
-    debugger; //TODO remove
     return this.http.post<void>(`/alerts/${id}/read`, null);
   }
 }

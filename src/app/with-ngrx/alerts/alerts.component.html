@@ -1,0 +1,14 @@
+<h1>Alerts</h1>
+
+<ng-container *ngIf="!(loading$ | async); else loading">
+  <div *ngFor="let alert of (alerts$ | async)" class="card">
+    <div class="card-body">
+      <p class="card-text" [ngClass]="!alert.IsRead ? 'fw-bold' : ''">{{alert.Message}}</p>
+      <button *ngIf="!alert.IsRead" class="btn btn-primary" (click)="markRead(alert)">Mark Read</button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

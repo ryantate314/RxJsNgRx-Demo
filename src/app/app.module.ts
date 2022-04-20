@@ -3,12 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MyCommonModule } from './common/common.module';
-import { WithoutNgrxModule } from './without-ngrx/without-ngrx.module';
+import { mockBackendProvider } from './common/mock-backend.interceptor';
 
 @NgModule({
   declarations: [
@@ -20,9 +18,8 @@ import { WithoutNgrxModule } from './without-ngrx/without-ngrx.module';
     AppRoutingModule,
     MyCommonModule,
     BsDropdownModule.forRoot(),
-    WithoutNgrxModule.forRoot()
   ],
-  providers: [],
+  providers: [mockBackendProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

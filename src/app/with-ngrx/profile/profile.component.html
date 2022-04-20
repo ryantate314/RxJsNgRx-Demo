@@ -6,5 +6,5 @@
     <input type="text" class="form-control" [(ngModel)]="profile.Name" />
   </div>
   <button class="btn btn-primary" (click)="onSave()">Save</button>
-  <p class="text-success" *ngIf="isUpdated">Profile updated successfully.</p>
+  <p class="text-success" *ngIf="isUpdated$ | async">Profile updated successfully.</p>
 </ng-container>

@@ -1,1 +1,40 @@
-<p>with-ngrx works!</p>
+<ng-container *ngIf="profile$ | async as profile; else loading">
+<nav class="navbar navbar-light navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['.']">NgRx Demo</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['.']">Home</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto w-100 justify-content-end">
+        <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            {{profile.Name}}
+            <span *ngIf="numUnreadAlerts$ | async as numUnreadAlerts" class="badge bg-danger">{{numUnreadAlerts}}</span>
+          </a>
+          <div *dropdownMenu class="dropdown-menu">
+            <a class="dropdown-item" [routerLink]="['profile']">Edit Profile</a>
+            <a class="dropdown-item" [routerLink]="['alerts']">
+              Alerts
+              <span *ngIf="numUnreadAlerts$ | async as numUnreadAlerts"
+                class="badge bg-danger">{{numUnreadAlerts}}</span>
+            </a>
+            <a class="dropdown-item" href="#">Log Out</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div><!-- container-fluid -->
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+</ng-container>
+
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>
